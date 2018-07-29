@@ -146,6 +146,5 @@ Maven插件的运行依赖于插件配置中的`phase`标签, 该标签声明了
 
 # References
 
-- https://blog.csdn.net/chinrui/article/details/66472815
-
-- 校验是否有为提交的代码 deploy: https://github.com/mrwilson/maven-plugins/blob/master/validate-maven-plugin/src/main/java/uk/co/probablyfine/validate/GitUntrackedFilesMojo.java
+- [自定义 Git - Git 钩子](https://www.git-scm.com/book/zh/v2/%E8%87%AA%E5%AE%9A%E4%B9%89-Git-Git-%E9%92%A9%E5%AD%90)
+- [Plugin Developers Centre](https://maven.apache.org/plugin-developers/index.html)
