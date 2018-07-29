@@ -81,7 +81,7 @@ Git可以在特定动作执行时触发自定义钩子脚本, 包括服务端脚
 
 `validate-commit-message/validate-commit-message.sh`钩子脚本, 该脚本主要用于校验提交日志的格式规范, 遵循[AngularJS Git Commit Message Conventions](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#)的格式。
 
-上面配置中, `ghooks`标签中配置git hook脚本标签, 上面例子中配置了`commit-msg`和`pre-commit`钩子标签, 该钩子是`git-hook-maven-plugin`内置的钩子脚本, 可以直接配置使用:
+一般在`ghooks`标签中配置git hook脚本标签, 上面例子中配置了`commit-msg`和`pre-commit`钩子标签, 内置的钩子脚本, 可以直接配置使用:
 
 > <commit-msg>validate-commit-message/validate-commit-message.sh</commit-msg>
 
