@@ -17,7 +17,7 @@ Git可以在特定动作执行时触发自定义钩子脚本, 包括服务端脚
 
 从github上面下载该maven插件:
 
-> git clone 
+> git clone https://github.com/arthinking/git-hook-maven-plugin.git
 
 该仓库包含两个项目:
 
@@ -77,7 +77,7 @@ Git可以在特定动作执行时触发自定义钩子脚本, 包括服务端脚
 
 目前提供的内置钩子脚本有:
 
-* [validate-commit-message/validate-commit-message.sh]() 
+* [validate-commit-message/validate-commit-message.sh](https://github.com/arthinking/git-hook-maven-plugin/tree/master/git-hook-maven-plugin/src/main/resources/validate-commit-message) 
 
 `validate-commit-message/validate-commit-message.sh`钩子脚本, 该脚本主要用于校验提交日志的格式规范, 遵循[AngularJS Git Commit Message Conventions](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#)的格式。
 
