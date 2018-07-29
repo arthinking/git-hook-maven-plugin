@@ -83,7 +83,9 @@ Git可以在特定动作执行时触发自定义钩子脚本, 包括服务端脚
 
 一般在`ghooks`标签中配置git hook脚本标签, 上面例子中配置了`commit-msg`和`pre-commit`钩子标签, 内置的钩子脚本, 可以直接配置使用:
 
-> <commit-msg>validate-commit-message/validate-commit-message.sh</commit-msg>
+```xml
+<commit-msg>validate-commit-message/validate-commit-message.sh</commit-msg>
+```
 
 钩子标签值的格式: 
 
@@ -106,7 +108,9 @@ git-hook-maven-plugin-demo
 ```
 如上目录结构, 假设该脚本是`pre-commit`钩子, 则可以这样配置:
 
-> <pre-commit>validate-code/validate-code.sh</pre-commit>
+```xml
+<pre-commit>validate-code/validate-code.sh</pre-commit>
+```
 
 建议自定义脚本放置到单独的文件夹中, 如上面的`validate-code`文件夹, 同时提供`README`文件, 阐述脚本的用途, 以及适用于什么钩子。
 

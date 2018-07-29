@@ -17,7 +17,7 @@ Git可以在特定动作执行时触发自定义钩子脚本, 包括服务端脚
 
 从github上面下载该maven插件:
 
-> git clone 
+> git clone https://github.com/arthinking/git-hook-maven-plugin.git
 
 该仓库包含两个项目:
 
@@ -77,13 +77,15 @@ Git可以在特定动作执行时触发自定义钩子脚本, 包括服务端脚
 
 目前提供的内置钩子脚本有:
 
-* [validate-commit-message/validate-commit-message.sh]() 
+* [validate-commit-message/validate-commit-message.sh](https://github.com/arthinking/git-hook-maven-plugin/tree/master/git-hook-maven-plugin/src/main/resources/validate-commit-message) 
 
 `validate-commit-message/validate-commit-message.sh`钩子脚本, 该脚本主要用于校验提交日志的格式规范, 遵循[AngularJS Git Commit Message Conventions](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#)的格式。
 
-上面配置中, `ghooks`标签中配置git hook脚本标签, 上面例子中配置了`commit-msg`和`pre-commit`钩子标签, 该钩子是`git-hook-maven-plugin`内置的钩子脚本, 可以直接配置使用:
+一般在`ghooks`标签中配置git hook脚本标签, 上面例子中配置了`commit-msg`和`pre-commit`钩子标签, 内置的钩子脚本, 可以直接配置使用:
 
-> <commit-msg>validate-commit-message/validate-commit-message.sh</commit-msg>
+```xml
+<commit-msg>validate-commit-message/validate-commit-message.sh</commit-msg>
+```
 
 钩子标签值的格式: 
 
@@ -106,7 +108,9 @@ git-hook-maven-plugin-demo
 ```
 如上目录结构, 假设该脚本是`pre-commit`钩子, 则可以这样配置:
 
-> <pre-commit>validate-code/validate-code.sh</pre-commit>
+```xml
+<pre-commit>validate-code/validate-code.sh</pre-commit>
+```
 
 建议自定义脚本放置到单独的文件夹中, 如上面的`validate-code`文件夹, 同时提供`README`文件, 阐述脚本的用途, 以及适用于什么钩子。
 
