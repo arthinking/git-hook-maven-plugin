@@ -10,7 +10,7 @@ Git可以在特定动作执行时触发自定义钩子脚本, 包括服务端脚
 为此, 推出了该插件, 包括以下特点:
 
 * 很方便的在项目中自定义团队的工作流, 把自定义钩子钩子脚本纳入git管理类, 方便团队共享;
-* 把钩子脚本的安装集成到`Maven`的声明周期中的某个阶段, 方便的通过项目编译自动安装或者升级脚本;
+* 把钩子脚本的安装集成到`Maven`的生命周期中的某个阶段, 方便的通过项目编译自动安装或者升级脚本;
 * 提供通用的内置脚本, 方便钩子的配置, 目前只提供了`validate-commit-message`钩子脚本, 用于提交日志的规范, 遵循[AngularJS Git Commit Message Conventions](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#)的格式。
 
 ## 1、安装
@@ -32,7 +32,24 @@ Git可以在特定动作执行时触发自定义钩子脚本, 包括服务端脚
 
 或者,您也可以推送到私服:
 
-> mvn install deploy
+> mvn deploy
+
+注意：deploy的时候，记得在项目的pom文件中配置私服地址：
+
+```
+<distributionManagement>
+		<repository>
+			<id>my-releases</id>
+			<name>Nexus Release Repository</name>
+			<url>http://localhost/nexus/content/repositories/thirdparty</url>
+		</repository>
+		<snapshotRepository>
+			<id>my-snapshots</id>
+			<name>Nexus Snapshot Repository</name>
+			<url>http://localhost/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+```
 
 ## 2、设置
 
@@ -73,11 +90,31 @@ Git可以在特定动作执行时触发自定义钩子脚本, 包括服务端脚
 
 ### 2.2、插件`configuration`配置说明
 
+#### 2.2.1、ghooks标签
+
+在该标签下面配置git hook。
+
+#### 2.2.2、commit-msg标签
+
+该标签是git hook钩子标签，目前可用的钩子标签如下：
+
+```
+applypatch-msg
+pre-push
+commit-msg
+pre-rebase
+post-update
+prepare-commit-msg
+pre-applypatch
+update
+pre-commit
+```
+
 ### 2.2.1、配置内置钩子脚本
 
 目前提供的内置钩子脚本有:
 
-* [validate-commit-message/validate-commit-message.sh](https://github.com/arthinking/git-hook-maven-plugin/tree/master/git-hook-maven-plugin/src/main/resources/validate-commit-message) 
+* [validate-commit-message/validate-commit-message.sh](https://github.com/arthinking/git-hook-maven-plugin/tree/master/git-hook-maven-plugin/src/main/resources/validate-commit-message)
 
 `validate-commit-message/validate-commit-message.sh`钩子脚本, 该脚本主要用于校验提交日志的格式规范, 遵循[AngularJS Git Commit Message Conventions](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#)的格式。
 
@@ -87,9 +124,9 @@ Git可以在特定动作执行时触发自定义钩子脚本, 包括服务端脚
 <commit-msg>validate-commit-message/validate-commit-message.sh</commit-msg>
 ```
 
-钩子标签值的格式: 
+钩子标签值的格式:
 
-> 钩子脚本名称/脚本入口
+> 钩子脚本所在文件夹/脚本文件
 
 ### 2.2.2、配置自定义钩子脚本
 
@@ -121,20 +158,6 @@ git-hook-maven-plugin-demo
 # Just for pre-commit hook
 # hook.version@1.0.2
 import sys,os,re
-```
-
-### 可以配置的钩子脚本标签
-
-```
-applypatch-msg
-pre-push
-commit-msg
-pre-rebase
-post-update
-prepare-commit-msg
-pre-applypatch
-update
-pre-commit
 ```
 
 详细说明参考: [Git hook介绍](https://git-scm.com/docs/githooks)

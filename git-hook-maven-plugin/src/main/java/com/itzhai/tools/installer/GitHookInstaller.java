@@ -109,28 +109,19 @@ public class GitHookInstaller {
 
         // 尝试从当前项目路径获取
         File localGitHookScript = new File(System.getProperty("user.dir") + File.separator + FILE_NAME_LOCAL_HOOKS
-                + File.separator + getHookScriptPath());
+                + File.separator + this.gitHookScriptPath);
         if(localGitHookScript.exists()) {
             log.info("Use local git hook file: " + gitHookScriptPath);
             return new FileInputStream(localGitHookScript);
         }
 
-        InputStream inputStream = GitHookInstaller.class.getClassLoader().getResourceAsStream(getHookScriptPath());
+        InputStream inputStream = GitHookInstaller.class.getClassLoader().getResourceAsStream(this.gitHookScriptPath);
         if(null != inputStream){
             log.info("Use plugin git hook file: " + gitHookScriptPath);
             return inputStream;
         }
 
         throw new MojoExecutionException("Git hook File not found: " + gitHookScriptPath);
-    }
-
-    private String getHookScriptPath() {
-        String[] strs = this.gitHookScriptPath.split("/");
-        StringBuilder sb = new StringBuilder();
-        for(String item : strs) {
-            sb.append(item).append(File.separator);
-        }
-        return sb.substring(0,sb.length()-1);
     }
 
     /**
