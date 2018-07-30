@@ -37,7 +37,7 @@ checkHeaderFormat() {
   local count=$(echo "${commit_msg_head}" | grep -Ec "$header_regex")
   if [ ${count} -eq 0 ]
   then
-    echo -e "${COLOR_RED}\nCommit log error: First commit message line (commit header) does not follow format: <type>(<scope>): <subject>" >&2
+    echo -e "${COLOR_RED}\nCommit log error: First commit message line (commit header) does not follow format: type(scope): subject" >&2
     echo -e "${COLOR_NONE} - Refer commit guide: ${refer_commit_guide}\n" >&2
     exit 1
   fi
