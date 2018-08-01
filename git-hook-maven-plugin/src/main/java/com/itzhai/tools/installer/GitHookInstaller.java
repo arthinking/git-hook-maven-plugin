@@ -59,7 +59,7 @@ public class GitHookInstaller {
     /**
      * 安装git hook脚本
      *
-     * @throws MojoExecutionException
+     * @throws MojoExecutionException mojo异常
      */
     public void installGitHook() throws MojoExecutionException {
 
