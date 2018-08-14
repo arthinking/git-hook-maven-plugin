@@ -15,6 +15,41 @@ Git可以在特定动作执行时触发自定义钩子脚本, 包括服务端脚
 
 ## 1、安装
 
+在项目中引入插件即可:
+
+```xml
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.itzhai.tools</groupId>
+        <artifactId>git-hook-maven-plugin</artifactId>
+        <version>1.0.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>git-hooks</goal>
+            </goals>
+
+            <configuration>
+              <ghooks>
+                <commit-msg>validate-commit-message/validate-commit-message.sh</commit-msg>
+                <pre-commit>validate-code/validate-code.sh</pre-commit>
+              </ghooks>
+            </configuration>
+
+            <phase>compile</phase>
+
+          </execution>
+
+        </executions>
+      </plugin>
+      ...
+    </plugins>
+  </build>
+```
+
+当然, 您也可以下载项目, deploy 插件到本地仓库或者私服:
+
 从github上面下载该maven插件:
 
 > git clone https://github.com/arthinking/git-hook-maven-plugin.git
